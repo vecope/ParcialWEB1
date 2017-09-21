@@ -4,7 +4,7 @@
 import React, {Component} from 'react';
 import propTypes from 'prop-types';
 
-class SearchBox extends Component {
+class Follower extends Component {
     constructor(props) {
         super(props);
     }
@@ -21,5 +21,5 @@ Follower.propTypes = {
 };
 
 
-export default SearchBox;
+export default Follower;
 }
