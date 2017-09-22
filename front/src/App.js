@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import FollowerList from './FollowerList.js';
+import History from './History.js'
 import './App.css';
 
 class App extends Component {
@@ -10,73 +11,92 @@ class App extends Component {
 
         this.state = {
             name: "",
-            followers: []
+            followers: [],
+            history: [],
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
-    handleSubmit(event) {
+    updateArray() {
 
 
         const value = document.getElementById("inputName").value;
 
-        console.log('handleSubmit: '+ value);
-
-            this.setState({
-                name: value
-            });
-
-
         console.log('Hay cambio en nombre:' + value);
-        console.log('Quedó: '+this.state.name);
+        console.log('Quedó: ' + this.state.name);
 
         console.log('A name was submitted: ' + this.state.name);
 
-        const route = "/followers/"+this.state.name;
+        const route = "/followers/" + this.state.name;
 
-        console.log("ruta: "+route);
+        console.log("ruta: " + route);
 
-        if(this.state.name!="") {
-            console.log("hay fetch");
+        if (this.state.name != "") {
+            console.log("pasa por aca");
             fetch(route).then(response => response.json())
                 .then(json => {
                     this.setState({
                         followers: json.data
-                    });
+                    }, console.log(json));
                 });
         }
-        else{
+        else {
             followers: []
         }
+
+    }
+
+
+    handleSubmit(event) {
+
+        var value = document.getElementById("inputName").value;
+        var hist = this.state.history;
+        hist.push(value);
+
+        console.log('handleSubmit: ' + value);
+
+
+        this.setState({
+            name: value,
+            history: hist
+        });
+
+
+        console.log("Updated")
+        this.updateArray();
 
         event.preventDefault();
     }
 
 
     renderSearch() {
-        console.log('renderSearch');
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="searchForm" onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                    <label>Name</label>
                     <input name="name" id="inputName" placeholder="Somebody"/>
+                    <button id="inputButton" type="submit">Submit</button>
                 </div>
-                <button type="submit">Submit</button>
             </form>
         )
     }
 
     render() {
-        console.log('render');
         return (
             <div className="App">
-                <h1>Followers</h1>
-                <div>
-                    {this.renderSearch()}
+                <div className="navigation">
+                    <div className="navLeft">
+                        Main actor: {this.state.name}
+                    </div>
+                    <div className="navRight">
+                            {this.renderSearch()}
+                    </div>
                 </div>
+                <div className="content">
+                <History history={this.state.history}/>
                 <FollowerList followers={this.state.followers}/>
+                </div>
             </div>
         );
     }

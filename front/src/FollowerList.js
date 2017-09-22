@@ -18,19 +18,19 @@ class FollowerList extends Component {
 
     validate(){
         if(this.props.followers.length==0){
-            return <h3>No hay seguidores que mostrar</h3>
+            return <h3>Nothing to show here! Please type something in the search box!</h3>
         }
         else{
-           return <h3>{this.props.followers.length}</h3>
+           return <h3>They've got: {this.props.followers.length} followers</h3>
         }
     }
 
     render() {
         return (<div>
-            <div>
+            <div className="list">
                 {this.renderFollowers()}
-            </div>
             {this.validate()}
+            </div>
         </div>);
     }
 }
