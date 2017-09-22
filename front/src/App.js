@@ -19,12 +19,18 @@ class App extends Component {
 
     handleSubmit(event) {
 
-        console.log('handleSubmit');
-        const value = document.getElementById("inputName").value
 
-        this.setState({
-            name: value
-        });
+        const value = document.getElementById("inputName").value;
+
+        console.log('handleSubmit: '+ value);
+
+            this.setState({
+                name: value
+            });
+
+
+        console.log('Hay cambio en nombre:' + value);
+        console.log('Quedó: '+this.state.name);
 
         console.log('A name was submitted: ' + this.state.name);
 
