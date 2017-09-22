@@ -16,13 +16,21 @@ class FollowerList extends Component {
         });
     }
 
+    validate(){
+        if(this.props.followers.length==0){
+            return <h3>No hay seguidores que mostrar</h3>
+        }
+        else{
+           return <h3>{this.props.followers.length}</h3>
+        }
+    }
 
     render() {
         return (<div>
             <div>
                 {this.renderFollowers()}
             </div>
-            <h3>{this.props.followers.length}</h3>
+            {this.validate()}
         </div>);
     }
 }
