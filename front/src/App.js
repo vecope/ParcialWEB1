@@ -6,7 +6,6 @@ import './App.css';
 class App extends Component {
 
     constructor(props) {
-        console.log('Constructor');
         super(props);
 
         this.state = {
@@ -24,22 +23,17 @@ class App extends Component {
 
         const value = document.getElementById("inputName").value;
 
-        console.log('Hay cambio en nombre:' + value);
-        console.log('Quedó: ' + this.state.name);
-
-        console.log('A name was submitted: ' + this.state.name);
-
         const route = "/followers/" + this.state.name;
 
-        console.log("ruta: " + route);
-
         if (this.state.name != "") {
-            console.log("pasa por aca");
             fetch(route).then(response => response.json())
                 .then(json => {
                     this.setState({
                         followers: json.data
-                    }, console.log(json));
+                    }, () => {
+                      console.log(this.state.followers);
+                      this.forceUpdate()
+                    });
                 });
         }
         else {
@@ -55,17 +49,13 @@ class App extends Component {
         var hist = this.state.history;
         hist.push(value);
 
-        console.log('handleSubmit: ' + value);
-
-
         this.setState({
             name: value,
             history: hist
+        },()=>{
+           this.updateArray();
+           this.forceUpdate()
         });
-
-
-        console.log("Updated")
-        this.updateArray();
 
         event.preventDefault();
     }
