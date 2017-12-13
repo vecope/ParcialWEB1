@@ -20,11 +20,11 @@ This idea was purposed by my WebDev teacher, **[John Guerra](https://github.com/
 
 3. In the same directory (/parcialWEB1/front) run:
 
-⋅⋅* `yarn start` if you want to use a proxy (it's already configured)
+  * `yarn start` if you want to use a proxy (it's already configured)
 
 >This runs on localhost:3000
 
-⋅⋅* `yarn build` if you want to use express' front-end (built app)
+  * `yarn build` if you want to use express' front-end (built app)
 
 >This runs on localhost:3001
 
@@ -32,7 +32,7 @@ This idea was purposed by my WebDev teacher, **[John Guerra](https://github.com/
 
 APIs used:
 
-⋅⋅* [GitHub API](https://developer.github.com/v3/)
+* [GitHub API](https://developer.github.com/v3/)
 
 ## Contributors
 
